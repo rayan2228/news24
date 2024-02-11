@@ -6,7 +6,7 @@ export const NewsContext = createContext();
 const NewsContextProvider = ({ children }) => {
   const [category, setCategory] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
-  const { data, loading, error } = useNewsQuery();
+  const { data, loading, error } = useNewsQuery(category, searchTerm);
   return (
     <NewsContext.Provider
       value={{

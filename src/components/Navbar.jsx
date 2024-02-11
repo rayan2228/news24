@@ -6,11 +6,15 @@ import { useContext, useEffect, useState } from "react";
 import { NewsContext } from "../context/news/newsContext";
 import getDateFormatter from "../utils/hooks/dateFormat";
 const Navbar = () => {
-  const { setCategory } = useContext(NewsContext);
+  const { setCategory, setSearchTerm } = useContext(NewsContext);
   const [currentTime, setCurrentTime] = useState(new Date());
   const [showSearch, setShowSearch] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
   const handleCategory = (category) => {
     setCategory(category);
+  };
+  const handleSearch = () => {
+    setSearchTerm(searchValue);
   };
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -99,14 +103,13 @@ const Navbar = () => {
                 ? "w-full visible opacity-100"
                 : "w-0 invisible opacity-0"
             }`}
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
           />
-          <label
-            htmlFor="search"
-            onClick={() => setShowSearch(!showSearch)}
-            className=""
-          >
+          <label htmlFor="search" onClick={() => setShowSearch(!showSearch)}>
             <Img src={searchImg} alt={"search"} />
           </label>
+          <button onClick={handleSearch}>search</button>
         </div>
       </div>
       {/* categories */}

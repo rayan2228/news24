@@ -4,9 +4,9 @@ import NewsItem from "./NewsItem";
 
 const RightSide = () => {
   const { data } = useContext(NewsContext);
-  const filterNews = data.articles?.filter(
-    (article) => article.description === null
-  );
+  const filterNews =
+    data.articles?.filter((article) => article.description === null) ||
+    data.result?.filter((article) => article.description === null);
   return (
     <div className="self-start col-span-12 xl:col-span-4">
       <div className="space-y-6 divide-y-2 divide-[#D5D1C9]">

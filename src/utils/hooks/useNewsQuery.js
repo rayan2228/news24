@@ -7,7 +7,7 @@ const useNewsQuery = (category = "", searchTerm = "") => {
     })
     const [data, setData] = useState(null)
     const [error, setError] = useState(null)
-
+    if (searchTerm) category = ""
     const fetchData = async (category, searchTerm) => {
         setLoading({
             ...loading,
@@ -30,7 +30,7 @@ const useNewsQuery = (category = "", searchTerm = "") => {
             }
             const data = await response.json()
             setData(data)
-
+            console.log(data);
         } catch (error) {
             setError(error)
         } finally {

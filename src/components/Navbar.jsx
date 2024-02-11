@@ -8,6 +8,7 @@ import getDateFormatter from "../utils/hooks/dateFormat";
 const Navbar = () => {
   const { setCategory } = useContext(NewsContext);
   const [currentTime, setCurrentTime] = useState(new Date());
+  const [showSearch, setShowSearch] = useState(false);
   const handleCategory = (category) => {
     setCategory(category);
   };
@@ -89,8 +90,23 @@ const Navbar = () => {
         </a>
         {/* Logo Ends */}
         {/* */}
-        <div className="flex items-center space-x-3 lg:space-x-8">
-          <Img src={searchImg} alt={"search"} />
+        <div className="flex items-center  w-[20%] justify-end gap-3">
+          <input
+            id="search"
+            type="search"
+            className={`p-3 transition-all duration-300 border border-green-300 outline-transparent ${
+              showSearch
+                ? "w-full visible opacity-100"
+                : "w-0 invisible opacity-0"
+            }`}
+          />
+          <label
+            htmlFor="search"
+            onClick={() => setShowSearch(!showSearch)}
+            className=""
+          >
+            <Img src={searchImg} alt={"search"} />
+          </label>
         </div>
       </div>
       {/* categories */}

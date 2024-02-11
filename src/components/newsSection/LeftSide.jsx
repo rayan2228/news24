@@ -20,6 +20,7 @@ const LeftSide = () => {
           url={article.url}
           urlImg={article.urlToImage}
           content={article.content}
+          publishedAt={article.publishedAt}
         />
       ))}
     </div>

@@ -18,6 +18,7 @@ const RightSide = () => {
             url={article.url}
             urlImg={article.urlToImage}
             content={article.content}
+            publishedAt={article.publishedAt}
           />
         ))}
         {/* news item ends */}

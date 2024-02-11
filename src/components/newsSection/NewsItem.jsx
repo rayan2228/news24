@@ -1,6 +1,7 @@
+import getDateFormatter from "../../utils/hooks/dateFormat";
 import Img from "../layouts/Img";
 
-const NewsItem = ({ title, url, content, urlImg }) => {
+const NewsItem = ({ title, url, content, urlImg, publishedAt }) => {
   console.log();
   return (
     <div className={`col-span-12 mb-6 md:col-span-8`}>
@@ -12,7 +13,9 @@ const NewsItem = ({ title, url, content, urlImg }) => {
           <h3 className="mb-2.5 text-xl font-bold lg:text-[20px]">{title}</h3>
         </a>
         <p className="text-base text-[#292219]">{content}</p>
-        <p className="mt-5 text-base text-[#94908C]">25 Feb 2021</p>
+        <p className="mt-5 text-base text-[#94908C]">
+          {getDateFormatter(publishedAt, "date", true)}
+        </p>
       </div>
     </div>
   );

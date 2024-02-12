@@ -4,6 +4,9 @@ import Container from "./layouts/Container";
 import { NewsContext } from "../context/news/newsContext";
 import { useContext } from "react";
 import categories from "../utils/categories";
+import List from "./layouts/List";
+import ListItem from "./layouts/ListItem";
+import pageLinks from "../utils/pageLinks";
 const Footer = () => {
   const { setCategory } = useContext(NewsContext);
   let firstHalfCategories = null;
@@ -12,8 +15,6 @@ const Footer = () => {
     firstHalfCategories = categories?.slice(0, 5);
     secondHalfCategories = categories?.slice(5, 10);
   }
-
-  // const firstHalf = categories?.slice(0, 5);
   const handleCategory = (category) => {
     setCategory(category);
   };
@@ -23,57 +24,36 @@ const Footer = () => {
         <div className="xl:grid xl:grid-cols-12 xl:gap-8">
           <div className="grid grid-cols-2 gap-8 md:grid md:grid-cols-2 md:gap-8 lg:grid-cols-3 xl:col-span-7 xl:grid-cols-5">
             <Img className="max-md:col-span-2" src={logo} alt="lws" />
-            <ul role="list" className="space-y-4">
+            <List role="list" className="space-y-4">
+              <ListItem className="cursor-pointer">
+                <a onClick={() => handleCategory("")}>Home</a>
+              </ListItem>
               {(firstHalfCategories || categories)?.map((category) => (
-                <li key={category} className="cursor-pointer">
+                <ListItem key={category} className="cursor-pointer">
                   <a onClick={() => handleCategory(category.toLowerCase())}>
                     {category}
                   </a>
-                </li>
+                </ListItem>
               ))}
-            </ul>
-
-            <ul role="list" className="space-y-4">
+            </List>
+            <List role="list" className="space-y-4">
               {secondHalfCategories?.map((category) => (
-                <li key={category} className="cursor-pointer">
+                <ListItem key={category} className="cursor-pointer">
                   <a onClick={() => handleCategory(category.toLowerCase())}>
                     {category}
                   </a>
-                </li>
+                </ListItem>
               ))}
-            </ul>
-            <ul role="list" className="space-y-4">
-              <li>
-                <a href="#" className="text-sm">
-                  Terms of Use
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm">
-                  Privacy
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm">
-                  Cookies Policy
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm">
-                  Manage Cookies
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm">
-                  Accessibility
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm">
-                  Contact Us
-                </a>
-              </li>
-            </ul>
+            </List>
+            <List role="list" className="space-y-4">
+              {pageLinks?.map((pageLink) => (
+                <ListItem key={pageLink}>
+                  <a href="#" className="text-sm">
+                    {pageLink}
+                  </a>
+                </ListItem>
+              ))}
+            </List>
             <div className="flex space-x-6">
               <a>
                 <svg

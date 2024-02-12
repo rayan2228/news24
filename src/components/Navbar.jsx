@@ -6,22 +6,31 @@ import { useContext, useEffect, useState } from "react";
 import { NewsContext } from "../context/news/newsContext";
 import getDateFormatter from "../utils/dateFormat";
 import useDebounce from "../utils/hooks/useDebounce";
+import List from "./layouts/List";
+import ListItem from "./layouts/ListItem";
 const Navbar = () => {
   const { setCategory, setSearchTerm } = useContext(NewsContext);
   const [currentTime, setCurrentTime] = useState(new Date());
   const [showSearch, setShowSearch] = useState(false);
+
   const handleCategory = (category) => {
     setCategory(category);
   };
+
+  const handleShowSearch = () => {
+    setShowSearch(!showSearch);
+  };
+
   const handleSearch = useDebounce((e) => {
     setSearchTerm(e.target.value);
   }, 800);
+
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCurrentTime(new Date());
     }, 1000);
     return () => clearInterval(intervalId);
-  }, []);
+  }, [showSearch]);
 
   return (
     <nav className="py-6 border-b border-black md:py-8">
@@ -85,7 +94,7 @@ const Navbar = () => {
           </span>
         </div>
         {/* Logo */}
-        <a href="/">
+        <a onClick={() => handleCategory("")} className="cursor-pointer">
           <Img
             className="max-w-[100px] md:max-w-[165px]"
             src={logo}
@@ -105,22 +114,22 @@ const Navbar = () => {
             }`}
             onChange={handleSearch}
           />
-          <label htmlFor="search" onClick={() => setShowSearch(!showSearch)}>
+          <label htmlFor="search" onClick={handleShowSearch}>
             <Img src={searchImg} alt={"search"} />
           </label>
         </div>
       </div>
       {/* categories */}
       <div className="container mx-auto mt-8">
-        <ul className="flex flex-wrap items-center justify-center gap-5 text-xs font-semibold lg:text-base">
+        <List className="flex flex-wrap items-center justify-center gap-5 text-xs font-semibold lg:text-base">
           {categories?.map((category) => (
-            <li key={category} className="cursor-pointer">
+            <ListItem key={category} className="cursor-pointer">
               <a onClick={() => handleCategory(category.toLowerCase())}>
                 {category}
               </a>
-            </li>
+            </ListItem>
           ))}
-        </ul>
+        </List>
       </div>
     </nav>
   );

@@ -5,8 +5,8 @@ import LeftNewsItem from "./LeftNewsItem";
 const LeftSide = () => {
   const { data } = useContext(NewsContext);
   const filterNews =
-    data.articles?.filter((article) => article.description !== null) ||
-    data.result?.filter((article) => article.description !== null);
+    data?.articles?.filter((article) => article.description !== null) ||
+    data?.result?.filter((article) => article.description !== null);
 
   return (
     //  lg:col-span-4 lg:col-span-8

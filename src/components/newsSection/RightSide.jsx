@@ -5,8 +5,8 @@ import NewsItem from "./NewsItem";
 const RightSide = () => {
   const { data } = useContext(NewsContext);
   const filterNews =
-    data.articles?.filter((article) => article.description === null) ||
-    data.result?.filter((article) => article.description === null);
+    data?.articles?.filter((article) => article.description === null) ||
+    data?.result?.filter((article) => article.description === null);
   return (
     <div className="self-start col-span-12 xl:col-span-4">
       <div className="flex flex-col">

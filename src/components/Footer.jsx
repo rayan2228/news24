@@ -1,7 +1,22 @@
 import Img from "./layouts/Img";
 import logo from "../assets/logo_light.png";
 import Container from "./layouts/Container";
+import { NewsContext } from "../context/news/newsContext";
+import { useContext } from "react";
+import categories from "../utils/categories";
 const Footer = () => {
+  const { setCategory } = useContext(NewsContext);
+  let firstHalfCategories = null;
+  let secondHalfCategories = null;
+  if (categories?.length > 5) {
+    firstHalfCategories = categories?.slice(0, 5);
+    secondHalfCategories = categories?.slice(5, 10);
+  }
+
+  // const firstHalf = categories?.slice(0, 5);
+  const handleCategory = (category) => {
+    setCategory(category);
+  };
   return (
     <footer className="pt-20 pb-8 text-white bg-neutral-800 sm:pt-24">
       <Container>
@@ -9,48 +24,23 @@ const Footer = () => {
           <div className="grid grid-cols-2 gap-8 md:grid md:grid-cols-2 md:gap-8 lg:grid-cols-3 xl:col-span-7 xl:grid-cols-5">
             <Img className="max-md:col-span-2" src={logo} alt="lws" />
             <ul role="list" className="space-y-4">
-              <li>
-                <a href="#" className="text-sm font-semibold">
-                  Home
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm font-semibold">
-                  General
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm font-semibold">
-                  Business
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm font-semibold">
-                  Entertainment
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm font-semibold">
-                  Health
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm font-semibold">
-                  Science
-                </a>
-              </li>
+              {(firstHalfCategories || categories)?.map((category) => (
+                <li key={category} className="cursor-pointer">
+                  <a onClick={() => handleCategory(category.toLowerCase())}>
+                    {category}
+                  </a>
+                </li>
+              ))}
             </ul>
+
             <ul role="list" className="space-y-4">
-              <li>
-                <a href="#" className="text-sm font-semibold">
-                  Sports
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm font-semibold">
-                  Technology
-                </a>
-              </li>
+              {secondHalfCategories?.map((category) => (
+                <li key={category} className="cursor-pointer">
+                  <a onClick={() => handleCategory(category.toLowerCase())}>
+                    {category}
+                  </a>
+                </li>
+              ))}
             </ul>
             <ul role="list" className="space-y-4">
               <li>

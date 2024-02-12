@@ -6,6 +6,7 @@ const useNewsQuery = (category = "", searchTerm = "") => {
         message: ""
     })
     const [data, setData] = useState(null)
+    const [noData, setNoData] = useState(false)
     const [error, setError] = useState(null)
     if (searchTerm) category = ""
     const fetchData = async (category, searchTerm) => {
@@ -29,7 +30,13 @@ const useNewsQuery = (category = "", searchTerm = "") => {
                 throw new Error(errorMessage)
             }
             const data = await response.json()
+            if (data?.articles?.length === 0 || data?.result?.length === 0) {
+                setNoData(true)
+            } else {
+                setNoData(false)
+            }
             setData(data)
+
         } catch (error) {
             setError(error)
         } finally {
@@ -44,7 +51,8 @@ const useNewsQuery = (category = "", searchTerm = "") => {
     useEffect(() => {
         fetchData(category, searchTerm)
     }, [category, searchTerm])
-    return { data, error, loading }
+
+    return { data, error, loading, noData }
 }
 
 export default useNewsQuery

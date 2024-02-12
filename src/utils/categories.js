@@ -5,6 +5,6 @@ const categories = [
     "Health",
     "Science",
     "Sports",
-    "Technology"
+    "Technology",
 ]
 export default categories

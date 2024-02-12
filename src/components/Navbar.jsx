@@ -114,7 +114,7 @@ const Navbar = () => {
       <div className="container mx-auto mt-8">
         <ul className="flex flex-wrap items-center justify-center gap-5 text-xs font-semibold lg:text-base">
           {categories?.map((category) => (
-            <li key={category}>
+            <li key={category} className="cursor-pointer">
               <a onClick={() => handleCategory(category.toLowerCase())}>
                 {category}
               </a>

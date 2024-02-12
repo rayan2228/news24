@@ -9,7 +9,7 @@ const RightSide = () => {
     data.result?.filter((article) => article.description === null);
   return (
     <div className="self-start col-span-12 xl:col-span-4">
-      <div className="space-y-6 divide-y-2 divide-[#D5D1C9]">
+      <div className="flex flex-col">
         {/* news item */}
         {filterNews?.map((article, index) => (
           <NewsItem

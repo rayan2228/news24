@@ -1,21 +1,21 @@
 import Img from "./layouts/Img";
 import searchImg from "../assets/icons/search.svg";
 import logo from "../assets/logo.png";
-import categories from "../utils/hooks/categories";
+import categories from "../utils/categories";
 import { useContext, useEffect, useState } from "react";
 import { NewsContext } from "../context/news/newsContext";
-import getDateFormatter from "../utils/hooks/dateFormat";
+import getDateFormatter from "../utils/dateFormat";
+import useDebounce from "../utils/hooks/useDebounce";
 const Navbar = () => {
   const { setCategory, setSearchTerm } = useContext(NewsContext);
   const [currentTime, setCurrentTime] = useState(new Date());
   const [showSearch, setShowSearch] = useState(false);
-  const [searchValue, setSearchValue] = useState("");
   const handleCategory = (category) => {
     setCategory(category);
   };
-  const handleSearch = () => {
-    setSearchTerm(searchValue);
-  };
+  const handleSearch = useDebounce((e) => {
+    setSearchTerm(e.target.value);
+  }, 800);
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCurrentTime(new Date());
@@ -103,13 +103,11 @@ const Navbar = () => {
                 ? "w-full visible opacity-100"
                 : "w-0 invisible opacity-0"
             }`}
-            value={searchValue}
-            onChange={(e) => setSearchValue(e.target.value)}
+            onChange={handleSearch}
           />
           <label htmlFor="search" onClick={() => setShowSearch(!showSearch)}>
             <Img src={searchImg} alt={"search"} />
           </label>
-          <button onClick={handleSearch}>search</button>
         </div>
       </div>
       {/* categories */}

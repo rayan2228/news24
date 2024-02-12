@@ -1,14 +1,20 @@
-import getDateFormatter from "../../utils/hooks/dateFormat";
+import getDateFormatter from "../../utils/dateFormat";
 import Img from "../layouts/Img";
 
 const NewsItem = ({ title, url, content, urlImg, publishedAt }) => {
   console.log();
   return (
-    <div className={`col-span-12 mb-6 md:col-span-8`}>
-      {urlImg && <Img className="w-full mt-5" src={urlImg} alt={title} />}
+    <div
+      className={`col-span-12  md:col-span-8 border-b-2 border-[#D5D1C9] pb-4 ${
+        urlImg && "order-first"
+      }`}
+    >
+      {urlImg && (
+        <Img className="object-cover w-full" src={urlImg} alt={title} />
+      )}
 
       {/* info */}
-      <div className="col-span-12 mt-6 md:col-span-4">
+      <div className="col-span-12 py-3 md:col-span-4">
         <a href={url} target="_blank">
           <h3 className="mb-2.5 text-xl font-bold lg:text-[20px]">{title}</h3>
         </a>

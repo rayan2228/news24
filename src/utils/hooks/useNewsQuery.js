@@ -12,7 +12,7 @@ const useNewsQuery = (category = "", searchTerm = "") => {
         setLoading({
             ...loading,
             state: true,
-            message: "fetching news"
+            message: "fetching news.........."
         })
         try {
             let queryString = import.meta.env.VITE_API_URL
@@ -30,7 +30,6 @@ const useNewsQuery = (category = "", searchTerm = "") => {
             }
             const data = await response.json()
             setData(data)
-            console.log(data);
         } catch (error) {
             setError(error)
         } finally {

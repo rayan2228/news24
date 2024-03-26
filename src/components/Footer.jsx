@@ -1,5 +1,4 @@
 import Img from "./layouts/Img";
-import logo from "../assets/logo_light.png";
 import Container from "./layouts/Container";
 import { NewsContext } from "../context/news/newsContext";
 import { useContext } from "react";
@@ -23,7 +22,9 @@ const Footer = () => {
       <Container>
         <div className="xl:grid xl:grid-cols-12 xl:gap-8">
           <div className="grid grid-cols-2 gap-8 md:grid md:grid-cols-2 md:gap-8 lg:grid-cols-3 xl:col-span-7 xl:grid-cols-5">
-            <Img className="max-md:col-span-2" src={logo} alt="lws" />
+            <h2 className="tracking-[10px] capitalize text-4xl font-workbanch">
+              rayan
+            </h2>
             <List role="list" className="space-y-4">
               <ListItem className="cursor-pointer">
                 <a onClick={() => handleCategory("")}>Home</a>
@@ -119,8 +120,15 @@ const Footer = () => {
       </Container>
       <div className="container mt-6 lg:mt-12">
         <p className="text-center">
-          Copyright ©{new Date().getFullYear()} | All rights reserved by Learn
-          with Sumit
+          Copyright ©{new Date().getFullYear()} | All rights reserved by{" "}
+          <a
+            className="underline transition-colors font-workbanch tracking-[5px]"
+            href="https://www.linkedin.com/in/rayan2228/"
+            target="_blank"
+            rel="linkedin"
+          >
+            rayan
+          </a>
         </p>
       </div>
     </footer>

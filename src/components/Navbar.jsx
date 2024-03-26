@@ -1,6 +1,5 @@
 import Img from "./layouts/Img";
 import searchImg from "../assets/icons/search.svg";
-import logo from "../assets/logo.png";
 import categories from "../utils/categories";
 import { useContext, useEffect, useState } from "react";
 import { NewsContext } from "../context/news/newsContext";
@@ -95,11 +94,9 @@ const Navbar = () => {
         </div>
         {/* Logo */}
         <a onClick={() => handleCategory("")} className="cursor-pointer">
-          <Img
-            className="max-w-[100px] md:max-w-[165px]"
-            src={logo}
-            alt="Lws"
-          />
+          <h1 className="tracking-[10px] capitalize text-4xl font-workbanch">
+            rayan
+          </h1>
         </a>
         {/* Logo Ends */}
         {/* */}
